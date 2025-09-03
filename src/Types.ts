@@ -1,8 +1,7 @@
 import type { Logger, LogLevelDesc } from "loglevel";
 import type { RequestHandler, Request, Response } from "express";
-import type { InfoObject, OperationObject } from "openapi3-ts/src/model/openapi31";
 import type { Express } from "express";
-import { SecuritySchemeObject } from "openapi3-ts/dist/model/openapi31";
+import { InfoObject, OperationObject, SecuritySchemeObject } from "openapi3-ts/dist/oas31";
 
 export interface PlatAPIConfigObject {
     info: InfoObject;

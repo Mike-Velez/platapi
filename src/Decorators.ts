@@ -1,8 +1,8 @@
 import { Utils } from "./Utils";
 import castArray from "lodash/castArray";
 import { PlatAPIRequestHandler, PlatAPIInputParameterRequirement, PlatAPIResponseFormatter, PlatAPIFriendlyError } from "./Types";
-import { OperationObject } from "openapi3-ts/src/model/openapi31";
-import { SecuritySchemeObject } from "openapi3-ts/dist/model/openapi31";
+
+import { SecuritySchemeObject, OperationObject } from "openapi3-ts/dist/model/openapi31";
 import any = jasmine.any;
 
 /**

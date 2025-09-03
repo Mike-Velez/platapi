@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import isLambda from "is-lambda";
 import { APIGatewayProxyHandler } from "aws-lambda";
 import { Server } from "http";
-import { Express, Request, Response, NextFunction } from "express/ts4.0";
+import { Express, Request, Response, NextFunction } from "express";
 import log, { Logger } from "loglevel";
 import { nanoid } from "nanoid";
 import get from "lodash/get";
