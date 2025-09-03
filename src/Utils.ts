@@ -9,7 +9,7 @@ import fs from "fs";
 import isFunction from "lodash/isFunction";
 import isString from "lodash/isString";
 import defaults from "lodash/defaults";
-import { Request } from "express/ts4.0";
+import { Request } from "express";
 
 const CATCH_ALL_REGEX = /\.{3}(.+)/;
 const OPTIONAL_CATCH_ALL_REGEX = /\[\.{3}(.+)]/;

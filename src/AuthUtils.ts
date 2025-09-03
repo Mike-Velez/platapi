@@ -1,4 +1,4 @@
-import { RequestHandler, Response } from "express/ts4.0";
+import { RequestHandler, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import castArray from "lodash/castArray";
 import { PlatAPI } from "./PlatAPI";

@@ -1,7 +1,7 @@
 import path from "path";
 import { ClassDeclaration, MethodDeclaration, Project, SourceFile, SyntaxKind, Type } from "ts-morph";
 import { OpenAPIObject } from "openapi3-ts/oas31";
-import { ContentObject, OperationObject, ParameterObject, ResponsesObject, SchemaObject } from "openapi3-ts/src/model/openapi31";
+import { ContentObject, OperationObject, ParameterObject, ResponsesObject, SchemaObject } from "openapi3-ts/dist/oas31";
 import * as TJS from "typescript-json-schema";
 import crypto from "crypto";
 import fs from "fs";
@@ -398,14 +398,24 @@ export class DocGenerator {
                 continue;
             }
 
-            const errorCodeSchema: SchemaObject = get(rawErrorSchema, "properties.statusCode") ?? {
-                type: "number",
-                enum: [500]
-            };
-            const errorMessageSchema: SchemaObject = get(rawErrorSchema, "properties.friendlyMessage") ?? {
-                type: "string",
-                enum: ["unknown"]
-            };
+            const rawErrorCodeSchema = get(rawErrorSchema, "properties.statusCode");
+            const errorCodeSchema: SchemaObject =
+                rawErrorCodeSchema && !("$ref" in rawErrorCodeSchema)
+                    ? rawErrorCodeSchema
+                    : {
+                          type: "integer",
+                          description: "HTTP status code"
+                      };
+
+            const rawErrorMessageSchema = get(rawErrorSchema, "properties.friendlyMessage");
+            const errorMessageSchema: SchemaObject =
+                rawErrorMessageSchema && !("$ref" in rawErrorMessageSchema)
+                    ? rawErrorMessageSchema
+                    : {
+                          type: "string",
+                          description: "Error message"
+                      };
+
             const errorCode = get(errorCodeSchema, "enum[0]", 500);
 
             let returnErrorSchema = DocGenerator._generateStandardErrorResponseSchema(errorCodeSchema, errorMessageSchema, config);
